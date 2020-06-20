@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="Utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../assets/boostrap/bootstrap.css">
+    <link rel="stylesheet" href="../assets/swiper/swiper.css">
+    <script src="../cookie.js"></script>
+
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        readSession("patient.html");  
+        
+    </script>
+
+
+    <div class="header">
+        <div class="container">
+            <div class="header-data-container flex j-space-between">
+                <div class="header-item  flex j-center a-center" style="margin-left: 20px;">
+                    <div class="header-item-logo ">
+                        <img src="../assets/img/headerLogo.png" alt="" srcset="">
+                    </div>
+                    <div class="header-item-text">
+                        <span class="header-title-text">T.C Sağlık Bakanlığı
+                            Aile Hekimiği Sistemi
+                        </span>
+                        <span class="header-title-text"></span>
+                    </div>
+                </div>
+                <div class="header-item flex a-center">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-tie"></i></i><span id="loginNameSurname"
+                                style="margin-left: 10px;"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="index.html"><i class="fas fa-sign-out-alt"></i><span>Çıkış
+                                    Yap</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="container" style="height: 1000px; ">
+            <div class="data-content">
+                <div class="form-item">
+                    <div style="margin-bottom: 10px; ">Doktor Seçiniz</div>
+                    <div class="form-item-container">
+                        <span> Doktor : </span>
+                        <select name="appointmentDoctor" id="appointmentDoctor"></select>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div style="margin-bottom: 10px;margin-top: 10px;">Randevu Tarihi</div>
+                    <div class="form-item-container">
+                        <span> Tarih : </span>
+                        <input type="date" id="appointmentDate" value="2020-06-01" name="birthday">
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div></div>
+                    <div class="form-item-container flex j-space-between">
+                        <div></div>
+                        <button type="button" id="findHour" onclick="SaatBul()" class="btn btn-primary">Saat
+                            Ara</button>
+
+                    </div>
+                </div>
+                <div class="time-container">
+                    <button class="0830 time-buttons btn btn-primary" onclick="selectTime('0830')">08:30</button>
+                    <button class="0900 time-buttons btn btn-primary" onclick="selectTime('0900')">09:00</button>
+                    <button class="0930 time-buttons btn btn-primary" onclick="selectTime('0930')">09:30</button>
+                    <button class="1000 time-buttons btn btn-primary" onclick="selectTime('1000')">10:00</button>
+                    <button class="1030 time-buttons btn btn-primary" onclick="selectTime('1030')">10:30</button>
+                    <button class="1100 time-buttons btn btn-primary" onclick="selectTime('1100')">11:00</button>
+                    <button class="1130 time-buttons btn btn-primary" onclick="selectTime('1130')">11:30</button>
+                    <button class="1200 time-buttons btn btn-primary" onclick="selectTime('1200')">12:00</button>
+                    <button class="1230 time-buttons btn btn-primary" onclick="selectTime('1230')">12:30</button>
+                    <button class="1300 time-buttons btn btn-primary" onclick="selectTime('1300')">13:00</button>
+                    
+                    <button class="1330 time-buttons btn btn-primary" onclick="selectTime('1330')">13:30</button>
+                    <button class="1400 time-buttons btn btn-primary" onclick="selectTime('1400')">14:00</button>
+                    <button class="1430 time-buttons btn btn-primary" onclick="selectTime('1430')">14:30</button>
+                    <button class="1500 time-buttons btn btn-primary" onclick="selectTime('1500')">15:00</button>
+                    <button class="1530 time-buttons btn btn-primary" onclick="selectTime('1530')">15:30</button>
+                    <button class="1600 time-buttons btn btn-primary" onclick="selectTime('1600')">16:00</button>
+                    <button class="1630 time-buttons btn btn-primary" onclick="selectTime('1630')">16:30</button>
+                    <button class="1700 time-buttons btn btn-primary" onclick="selectTime('1700')">17:00</button>
+                </div>
+                <div class="btn-appoiment flex j-center" >
+                    <button class="btn btn-success" onclick="previewAppoiment()" >-->   Randevu Oluştur  <--</button>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        <div class="footer-contact flex">
+            <div class="footer-contact-container">
+                <div class="footer-contact-container-title">İLETİŞİM</div>
+                <div class="footer-contact-container-content"> Adres : Yenişehir Mh. Alpha Beta Gamma Sk. NO : V/IXX
+                    Mars/Silivri</div>
+            </div>
+            <div class="footer-contact-container">
+                <div class="footer-contact-container-title">Hasan Korkmaz</div>
+                <div class="footer-contact-container-icons flex j-center">
+                    <i class="fab fa-github"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+            <div class="footer-contact-container">
+                <div class="footer-contact-container-title">Yusuf Şirin</div>
+                <div class="footer-contact-container-icons flex j-center">
+                    <i class="fab fa-github"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="copyright">© Copyright 2020 | Hasan & Yusuf Organization Tüm Hakları MIT Lisansı ile dağıtıma
+            açıktır.</div>
+    </div>
+
+
+    <script src="../assets/boostrap/bootstrap.js"></script>
+    <script src="../assets/notify/notify.js"></script>
+    <script>
+        document.getElementById('loginNameSurname').innerHTML = getCookie('AHSnameSurname');
+        var text = "";
+        $.ajax({
+            type: "POST",
+            url: "../server/patient.php",
+            data: { "FunctionName": "GetList" },
+            success: function (response) {
+                console.log(response);
+                var obj = JSON.parse(response);
+                if (obj.Status == true) {
+                    obj.Data.forEach(element => {
+                        text += "<option value=" + element.TC + ">" + element.NameSurname + "</option>";
+                    });
+
+                }
+                document.getElementById("appointmentDoctor").innerHTML = text;
+            },
+            error: function (response) {
+
+            }
+        });
+        function SaatBul() {
+            var appointmentDate = $('#appointmentDate').val();
+            var appointmentDoctor = $('#appointmentDoctor').val();
+
+            $.ajax({
+                type: "POST",
+                url: "../server/appointment.php",
+                data: { "FunctionName": "GetTimes", "Parameters": [appointmentDoctor, appointmentDate] },
+                success: function (response) {
+                    $('.time-buttons').each(function (index, v) {
+                                v = $(v);
+
+                                if (v.hasClass("disable") == true) {
+                                    v.removeClass("disable");
+                                }
+                            });
+                    var obj = JSON.parse(response);
+                    console.log(obj);
+                    if (obj.Status == true) {
+                        var arr = obj.Data;
+                        arr.forEach(element => {
+                            element.Saat = element.Saat.split(":")[0] + element.Saat.split(":")[1];
+                            $('.time-buttons').each(function (index, v) {
+                                v = $(v);
+                                if (v.hasClass(element.Saat) == true) {
+                                    v.addClass("disabled");
+                                    console.log(element.Saat);
+                                }
+                            })
+                        });
+                    }
+                },
+                error: function (response) {
+                    console.log("tetetet");
+                    console.log(response);
+                }
+            });
+        }
+        function selectTime(className) {
+            console.log(className);
+            $('.time-buttons').each(function (index, v) {
+                v = $(v);
+                if(v.hasClass("selected"))
+                {
+                   v.removeClass("selected")
+                }
+            });
+            if( $('.'+className).hasClass("disabled")==false)
+            {
+                $('.'+className).addClass("selected");
+
+            }
+
+
+        }
+        function previewAppoiment()
+        {
+           
+        }
+
+    </script>
+
+</body>
+
+</html>

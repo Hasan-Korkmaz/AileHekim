@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>@charset "utf8";
+        @import url(https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap);
+        
+        :root {
+          --fontSize: calc(1vw + 1vh);
+        }
+        
+        *, *:before, *:after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        html {
+          min-height: 100vh;
+          font: 300 var(--fontSize)/1.618 "Oswald", sans-serif;
+        }
+        
+        #container {
+          width: 100%;
+          height: 100%;
+        }
+        
+        canvas {
+          position: absolute;
+          /* slacker solution to not create a resize function*/
+          width: 100vw;
+          height: 100vh;
+        }
+        
+        h1 {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          font-size: 20rem;
+          color: transparent;
+          text-shadow: 0 0 10px rgba(0, 0, 0, .5);
+        }
+        
+        h1 span:nth-child(1) {
+          animation: letter1 4s 1.5s ease infinite;
+        }
+        
+        h1 span:nth-child(2) {
+          animation: letter2 4s 1.5s ease infinite;
+        }
+        
+        h1 span:nth-child(3) {
+          animation: letter3 4s 1.5s ease infinite;
+        }
+        
+        @keyframes letter1 {
+            0%   {transform: translateX(0rem);}
+            75%   {transform: translateX(22rem);}
+            100%   {transform: translateX(22rem);}
+        }
+        
+        @keyframes letter2 {
+            0%   {transform: scale(1) rotate(0deg);;}
+           40%   {transform: scale(.25) rotate(180deg);}
+           80%   {transform: scale(1) rotate(360deg);}
+          100%   {transform: scale(1) rotate(360deg);}
+        }
+        
+        @keyframes letter3 {
+            0%   {transform: translateX(0rem);}
+            75%   {transform: translateX(-22rem);}
+            100%   {transform: translateX(-22rem);}
+        }
+        
+        p {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          color: white;
+          font-size: 4rem;
+          font-weight: bold;
+          text-align: center;
+        }
+        
+        p span:nth-child(1) {
+          position: absolute;
+          top: calc(12vh - 4rem);
+            text-shadow: 
+            0 1px 0 #ccc, 
+            0 2px 0 #c9c9c9, 
+            0 3px 0 #bbb, 
+            0 4px 0 #b9b9b9, 
+            0 5px 0 #aaa, 
+            0 6px 1px rgba(0,0,0,.1), 
+            0 0 5px rgba(0,0,0,.1), 
+            0 1px 3px rgba(0,0,0,.3), 
+            0 3px 5px rgba(0,0,0,.2), 
+            0 5px 10px rgba(0,0,0,.25), 
+            0 10px 10px rgba(0,0,0,.2), 
+            0 20px 20px rgba(0,0,0,.15);
+        }
+        
+        p span:nth-child(2) {
+          position: absolute;
+          font-size: 50%;
+          color: black;
+          bottom: calc(8vh + 1rem);
+          text-shadow:
+            -1px -1px 0 white,  
+             1px -1px 0 white,
+            -1px 1px 0 white,
+             1px 1px 0 white;
+        }
+        
+        p span:nth-child(3) {
+          position: absolute;
+          font-size: 50%;
+          color: black;
+          bottom: calc(1vh + 1rem);
+          text-shadow:
+            -1px -1px 0 white,  
+             1px -1px 0 white,
+            -1px 1px 0 white,
+             1px 1px 0 white;
+        }
+        
+        a {
+          text-decoration: none;
+          color: black;
+        }
+        
+        a:hover {
+          color: white;
+          text-shadow:
+            -1px -1px 0 black,  
+             1px -1px 0 black,
+            -1px 1px 0 black,
+             1px 1px 0 black;
+        }</style>
+        <div id="container">
+            <canvas id="canvas"></canvas>
+            <h1><span>4</span><span>0</span><span>4</span></h1>
+            <p><span>Sayfa Bulunamadı !</span>
+              <span>Yetkiniz yok veya böyle bir sayfa yok</span>
+              <span>&#x21E8;&nbsp;<a href="index.html">Anasayfaya Dön</a>&nbsp;&#x21E6;</span>
+            </p>
+          </div>
+    <script>var ctx, imgData;
+
+        function Init() {
+            ctx = document.getElementById('canvas').getContext('2d');
+            ctx.canvas.width = window.innerWidth;
+            ctx.canvas.height = window.innerHeight;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            ctx.fill();
+            imgData = ctx.getImageData(0, 0, window.innerWidth, window.innerHeight);
+            setInterval(flickering, 50);
+        }
+        
+        function flickering() {
+          for (var i = 0; i < imgData.data.length; i += 4) {
+            var color = (Math.random() * 255) + 50;
+              imgData.data[i] = color;
+              imgData.data[i + 1] = color;
+              imgData.data[i + 2] = color;
+          }
+          ctx.putImageData(imgData, 0, 0);
+        }
+        
+        Init();</script>
+</body>
+</html>
