@@ -1,6 +1,7 @@
 # Aile Hekimliği Sistemi V 0.000.000.1
 
 Selçuk Üniversitesi Teknoloji Fakültesi Bilg. Müh Web Tasarım Dersi Final Ödevi 
+<hr>
 
 ## Projede kullanilan Frameworkler 
 * Boostrap 4
@@ -9,7 +10,14 @@ Selçuk Üniversitesi Teknoloji Fakültesi Bilg. Müh Web Tasarım Dersi Final �
 * Notify.js
 * Swiper.js
 * Güzel Olan Herşey 😂
+<hr>
   
+## Özellikler.
+* Cookie tabanlı authentication
+* Rest Api tarzı kendi mimarim ile Frontend ve Backendin bağımsızlaştırılması.
+<hr>
+
+
 
 
 
@@ -21,14 +29,28 @@ start chrome --allow-file-access-from-files
 ```
 
 ## Resimler
+<hr>
+
 ### Anasayfa
 ![AnaSayfa](/projectImages/index.png)
-### Anasyfa devam
+
+<hr>
+
+### Anasayfa devam
 ![AnaSayfa2](/projectImages/index2.png)
-### Giriş Ekranı
+<hr>
+
+### Giriş Sayfası
 ![Hasta](/projectImages/login.png)
-### Hasta Ekranı
+<hr>
+
+### Hasta Sayfası
 ![Hasta](/projectImages/patient.png)
+<hr>
+
+### 404 Sayfası
+![Hasta](/projectImages/404.png)
+<hr>
 
 
 
