@@ -321,9 +321,9 @@ body {
     border-radius: 3px;
     margin: 5px;
 }
-.disable
+.disabled
 {
-    background-color: #6c757d !important;
+    cursor: no-drop !important;
 }
 .selected
 {

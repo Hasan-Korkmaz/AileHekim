@@ -20,8 +20,8 @@
 
 <body>
     <script>
-        readSession("patient.html");  
-        
+        readSession("patient.html");
+
     </script>
 
 
@@ -82,30 +82,32 @@
 
                     </div>
                 </div>
-                <div class="time-container">
-                    <button class="0830 time-buttons btn btn-primary" onclick="selectTime('0830')">08:30</button>
-                    <button class="0900 time-buttons btn btn-primary" onclick="selectTime('0900')">09:00</button>
-                    <button class="0930 time-buttons btn btn-primary" onclick="selectTime('0930')">09:30</button>
-                    <button class="1000 time-buttons btn btn-primary" onclick="selectTime('1000')">10:00</button>
-                    <button class="1030 time-buttons btn btn-primary" onclick="selectTime('1030')">10:30</button>
-                    <button class="1100 time-buttons btn btn-primary" onclick="selectTime('1100')">11:00</button>
-                    <button class="1130 time-buttons btn btn-primary" onclick="selectTime('1130')">11:30</button>
-                    <button class="1200 time-buttons btn btn-primary" onclick="selectTime('1200')">12:00</button>
-                    <button class="1230 time-buttons btn btn-primary" onclick="selectTime('1230')">12:30</button>
-                    <button class="1300 time-buttons btn btn-primary" onclick="selectTime('1300')">13:00</button>
-                    
-                    <button class="1330 time-buttons btn btn-primary" onclick="selectTime('1330')">13:30</button>
-                    <button class="1400 time-buttons btn btn-primary" onclick="selectTime('1400')">14:00</button>
-                    <button class="1430 time-buttons btn btn-primary" onclick="selectTime('1430')">14:30</button>
-                    <button class="1500 time-buttons btn btn-primary" onclick="selectTime('1500')">15:00</button>
-                    <button class="1530 time-buttons btn btn-primary" onclick="selectTime('1530')">15:30</button>
-                    <button class="1600 time-buttons btn btn-primary" onclick="selectTime('1600')">16:00</button>
-                    <button class="1630 time-buttons btn btn-primary" onclick="selectTime('1630')">16:30</button>
-                    <button class="1700 time-buttons btn btn-primary" onclick="selectTime('1700')">17:00</button>
-                </div>
-                <div class="btn-appoiment flex j-center" >
-                    <button class="btn btn-success" onclick="previewAppoiment()" >-->   Randevu Oluştur  <--</button>
+                <div id="renderTimeAndAppoinment" class="none">
+                    <div class="time-container">
+                        <button class="0830 time-buttons btn btn-primary" onclick="selectTime('0830')">08:30</button>
+                        <button class="0900 time-buttons btn btn-primary" onclick="selectTime('0900')">09:00</button>
+                        <button class="0930 time-buttons btn btn-primary" onclick="selectTime('0930')">09:30</button>
+                        <button class="1000 time-buttons btn btn-primary" onclick="selectTime('1000')">10:00</button>
+                        <button class="1030 time-buttons btn btn-primary" onclick="selectTime('1030')">10:30</button>
+                        <button class="1100 time-buttons btn btn-primary" onclick="selectTime('1100')">11:00</button>
+                        <button class="1130 time-buttons btn btn-primary" onclick="selectTime('1130')">11:30</button>
+                        <button class="1200 time-buttons btn btn-primary" onclick="selectTime('1200')">12:00</button>
+                        <button class="1230 time-buttons btn btn-primary" onclick="selectTime('1230')">12:30</button>
+                        <button class="1300 time-buttons btn btn-primary" onclick="selectTime('1300')">13:00</button>
 
+                        <button class="1330 time-buttons btn btn-primary" onclick="selectTime('1330')">13:30</button>
+                        <button class="1400 time-buttons btn btn-primary" onclick="selectTime('1400')">14:00</button>
+                        <button class="1430 time-buttons btn btn-primary" onclick="selectTime('1430')">14:30</button>
+                        <button class="1500 time-buttons btn btn-primary" onclick="selectTime('1500')">15:00</button>
+                        <button class="1530 time-buttons btn btn-primary" onclick="selectTime('1530')">15:30</button>
+                        <button class="1600 time-buttons btn btn-primary" onclick="selectTime('1600')">16:00</button>
+                        <button class="1630 time-buttons btn btn-primary" onclick="selectTime('1630')">16:30</button>
+                        <button class="1700 time-buttons btn btn-primary" onclick="selectTime('1700')">17:00</button>
+                    </div>
+                    <div class="btn-appoiment flex j-center">
+                        <button class="btn btn-success" onclick="previewAppoiment()"> --> Randevu Oluştur <-- /button>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,13 +144,76 @@
         <div class="copyright">© Copyright 2020 | Hasan & Yusuf Organization Tüm Hakları MIT Lisansı ile dağıtıma
             açıktır.</div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="modalPreview" tabindex="-1" role="dialog"
+        aria-labelledby="Randevuyu Gözden Geçir ve Onayla" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Randevuyu Gözden Geçir ve Onayla</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">Doktor :</div>
+                        <div class="col-md-4" id="doctorDisplayer">asfgasgf</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Tarih :</div>
+                        <div class="col-md-4" id="dateDisplayer">asfgasgf</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Saat :</div>
+                        <div class="col-md-4" id="timeDisplayer">asfgasgf</div>
+                    </div>
+                    <div class="row " style="margin-top: 30px;">
+                        <div class="col-md-12" style="font-size: 22; color: red;">LÜTFEN RANDEVUNUZA 15 DAKİKA ERKEN GELİNİZ</div>
+                        <div class="col-md-12" style="font-size: 22; color: red;">LÜTFEN RANDEVU BİLGİLENİRİZİ NOT ALINIZ</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="button" id="btnSaveData" class="btn btn-success">Onayla</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../assets/boostrap/bootstrap.js"></script>
     <script src="../assets/notify/notify.js"></script>
+    <script src="../assets/js/util.js"></script>
     <script>
         document.getElementById('loginNameSurname').innerHTML = getCookie('AHSnameSurname');
+
+        /**********************GLOBAL DEFİNATİON ********************/
         var text = "";
+        var selectedDoctor;
+        var selectedDate;
+        var selectedTime;
+        /**********************GLOBAL DEFİNATİON ********************/
+        $('#appointmentDoctor').on('change', function () {
+
+            SaatBul();
+        });
+        $('#appointmentDate').on('change', function () {
+            var date = $('#appointmentDate').val();
+            var today = new Date();
+            if (Date.parse(date) < Date.parse(today))
+            {
+                $.notify("Eski Tarihe Randevu Alamazsınız.", "error");
+
+                $('#appointmentDate').val(DateFormatYYYYMMDD(today));
+                
+
+            }
+            else
+            {
+                SaatBul();
+            }
+            
+        });
         $.ajax({
             type: "POST",
             url: "../server/patient.php",
@@ -169,8 +234,17 @@
             }
         });
         function SaatBul() {
+            if ($('#renderTimeAndAppoinment').hasClass('none')) {
+                $('#renderTimeAndAppoinment').removeClass('none');
+            }
             var appointmentDate = $('#appointmentDate').val();
             var appointmentDoctor = $('#appointmentDoctor').val();
+            $('.time-buttons').each(function (index, v) {
+                v = $(v);
+                if (v.hasClass("disabled") == true) {
+                    v.removeClass("disabled");
+                }
+            })
 
             $.ajax({
                 type: "POST",
@@ -178,15 +252,16 @@
                 data: { "FunctionName": "GetTimes", "Parameters": [appointmentDoctor, appointmentDate] },
                 success: function (response) {
                     $('.time-buttons').each(function (index, v) {
-                                v = $(v);
+                        v = $(v);
 
-                                if (v.hasClass("disable") == true) {
-                                    v.removeClass("disable");
-                                }
-                            });
+                        if (v.hasClass("disable") == true) {
+                            v.removeClass("disable");
+                        }
+                    });
                     var obj = JSON.parse(response);
                     console.log(obj);
                     if (obj.Status == true) {
+
                         var arr = obj.Data;
                         arr.forEach(element => {
                             element.Saat = element.Saat.split(":")[0] + element.Saat.split(":")[1];
@@ -198,6 +273,7 @@
                                 }
                             })
                         });
+
                     }
                 },
                 error: function (response) {
@@ -210,23 +286,65 @@
             console.log(className);
             $('.time-buttons').each(function (index, v) {
                 v = $(v);
-                if(v.hasClass("selected"))
-                {
-                   v.removeClass("selected")
+                if (v.hasClass("selected")) {
+                    v.removeClass("selected")
                 }
             });
-            if( $('.'+className).hasClass("disabled")==false)
-            {
-                $('.'+className).addClass("selected");
+            if ($('.' + className).hasClass("disabled") == false) {
+                $('.' + className).addClass("selected");
 
             }
 
 
         }
-        function previewAppoiment()
-        {
-           
+        function previewAppoiment() {
+            selectedDoctor = $('#appointmentDoctor').val();
+            selectedDate = $('#appointmentDate').val();
+            selectedTime = $('.selected').text();
+            console.log(selectedTime);
+            console.log("succes");
+            if ((selectedDoctor == null || selectedDoctor == undefined)) {
+                $.notify("Doktor Seçmediniz", "error");
+                console.log(err);
+            }
+            else if (selectedDate == null || selectedDate == undefined) {
+                $.notify("Tarih Seçmediniz", "error");
+
+            }
+            else if ((selectedTime == null || selectedTime == undefined || selectedTime == "")) {
+                $.notify("Saat Seçmediniz", "error");
+
+            }
+            else {
+                $
+                $('#doctorDisplayer').text($('#appointmentDoctor option:selected').text());
+                $('#dateDisplayer').text(selectedDate);
+                $('#timeDisplayer').text(selectedTime);
+
+                $('#modalPreview').modal('toggle');
+            }
+
         }
+        $('#btnSaveData').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "../server/siramatik.php",
+                data: { "FunctionName": "add", "Parameters": [selectedDoctor, selectedDate, selectedTime, getCookie("AHSTC")] },
+
+                success: function (response) {
+                    var obj = JSON.parse(response);
+                    if (obj.Status == true) {
+                        $.notify(obj.Message, "success");
+                        $('#modalPreview').modal('toggle');
+
+                    }
+                    else {
+                        $.notify(obj.Message, "error");
+                    }
+                }
+            });
+            console.log(getCookie("AHSTC"));
+        });
 
     </script>
 

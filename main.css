@@ -304,8 +304,8 @@ body {
   margin: 5px;
 }
 
-.disable {
-  background-color: #6c757d !important;
+.disabled {
+  cursor: no-drop !important;
 }
 
 .selected {

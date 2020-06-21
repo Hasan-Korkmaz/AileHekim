@@ -11,7 +11,7 @@ Selçuk Üniversitesi Teknoloji Fakültesi Bilg. Müh Web Tasarım Dersi Final �
 * Güzel Olan Herşey 😂
   
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+
 
 
 ## Eğer Projede Cross Origin Hatası Alırsanız.
@@ -20,8 +20,16 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 start chrome --allow-file-access-from-files
 ```
 
-## Images
-![Image of Yaktocat](/projectImages/index.png)
+## Resimler
+### Anasayfa
+![AnaSayfa](/projectImages/index.png)
+### Anasyfa devam
+![AnaSayfa2](/projectImages/index2.png)
+### Giriş Ekranı
+![Hasta](/projectImages/login.png)
+### Hasta Ekranı
+![Hasta](/projectImages/patient.png)
+
 
 
 ## License
