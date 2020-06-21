@@ -13,15 +13,15 @@ Selçuk Üniversitesi Teknoloji Fakültesi Bilg. Müh Web Tasarım Dersi Final �
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
-```bash
-pip install foobar
-```
 
 ## Eğer Projede Cross Origin Hatası Alırsanız.
 
 ```shell
 start chrome --allow-file-access-from-files
 ```
+
+## Images
+![Image of Yaktocat] (github.com/Hasan-Korkmaz/AileHekim/blob/master/projectImages/index.png)
 
 
 ## License
