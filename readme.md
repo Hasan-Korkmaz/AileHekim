@@ -21,7 +21,7 @@ start chrome --allow-file-access-from-files
 ```
 
 ## Images
-![Image of Yaktocat](/Hasan-Korkmaz/AileHekim/blob/master/projectImages/index.png)
+![Image of Yaktocat](/projectImages/index.png)
 
 
 ## License
