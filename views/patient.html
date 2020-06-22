@@ -70,7 +70,7 @@
                     <div style="margin-bottom: 10px;margin-top: 10px;">Randevu Tarihi</div>
                     <div class="form-item-container">
                         <span> Tarih : </span>
-                        <input type="date" id="appointmentDate" value="2020-06-01" name="birthday">
+                        <input type="date" id="appointmentDate"  name="birthday">
                     </div>
                 </div>
                 <div class="form-item">
@@ -186,6 +186,7 @@
     <script src="../assets/js/util.js"></script>
     <script>
         document.getElementById('loginNameSurname').innerHTML = getCookie('AHSnameSurname');
+        document.getElementById('appointmentDate').value = DateFormatYYYYMMDD(new Date());
 
         /**********************GLOBAL DEFİNATİON ********************/
         var text = "";
@@ -194,7 +195,6 @@
         var selectedTime;
         /**********************GLOBAL DEFİNATİON ********************/
         $('#appointmentDoctor').on('change', function () {
-
             SaatBul();
         });
         $('#appointmentDate').on('change', function () {
@@ -303,11 +303,11 @@
             selectedTime = $('.selected').text();
             console.log(selectedTime);
             console.log("succes");
-            if ((selectedDoctor == null || selectedDoctor == undefined)) {
+            if ((selectedDoctor == null || selectedDoctor == undefined || selectedDoctor == "")) {
                 $.notify("Doktor Seçmediniz", "error");
                 console.log(err);
             }
-            else if (selectedDate == null || selectedDate == undefined) {
+            else if (selectedDate == null || selectedDate == undefined || selectedDate == "") {
                 $.notify("Tarih Seçmediniz", "error");
 
             }
@@ -334,8 +334,13 @@
                 success: function (response) {
                     var obj = JSON.parse(response);
                     if (obj.Status == true) {
-                        $.notify(obj.Message, "success");
                         $('#modalPreview').modal('toggle');
+                        setTimeout(() => {
+                            window.location.href = "patient.html";
+
+                        }, 3000);
+                        $.notify(obj.Message, "success");
+                        
 
                     }
                     else {
