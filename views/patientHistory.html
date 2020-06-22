@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="Utf-8">
@@ -21,7 +21,7 @@
 
 <body>
     <script>
-        readSession("personel.html");
+        readSession("patientHistory.html");
 
     </script>
 
@@ -59,30 +59,20 @@
     </div>
     <div class="main-body">
         <div class="container" style="height: 1000px;  padding: 30px;  background-color:rgba(127, 130, 137,0.3);">
-            <div class="form-item-container">
-                <span> Tarih : </span>
-                <input type="date" id="appointmentDate" onchange="updateTable()">
-            </div>
-            <div id="todayDate"></div>
-
-            <table id="TodayPatient" class="display" width="100%">
+            <table id="patientHistory" class="display" width="100%">
                 <thead>
                     <tr>
-                        <th>Hasta TC </th>
-                        <th>Randevu Saati</th>
+                        <th>Tarih</th>
+                        <th>Saat</th>
                         <th>Adı Soyadı</th>
-                        <th>Yaş</th>
+                        <th>Doktor</th>
+                        <th>İşlem</th>
+                        <th>Detay</th>
                         <th>Durum</th>
 
                     </tr>
                 </thead>
             </table>
-            <div class="flex" style="justify-content: flex-end;">
-                <button type="button" class="btn btn-primary mr-2" onclick="GoHistory()"> Hasta Geçmişi</button>
-
-                <button type="button" class="btn btn-success" onclick="GoProccess()"> İşlem Yap</button>
-            </div>
-
         </div>
     </div>
 
@@ -122,39 +112,35 @@
     <script src="../assets/notify/notify.js"></script>
     <script src="../assets/js/util.js"></script>
     <script src="../assets/datatable/datatables.js"></script>
-    <script src="../assets/datatable/DataTables-1.10.21/select.js"></script>
+    <script src="../assets/datatable/tableorder.js"></script>
     <script>
         document.getElementById('loginNameSurname').innerHTML = getCookie('AHSnameSurname');
-
-        function updateTable() {
-            document.getElementById("todayDate").value = new Date();
-            var selectedDate = $('#appointmentDate').val();
-
-            var today = new Date();
-            var todayYYYYMMDD = DateFormatYYYYMMDD(today);
-            $('#todayDate').text(todayYYYYMMDD + " Tarihli Hastalar Saat Sırasına Göre");
-            var doctor = getCookie("AHSTC");
-            $.ajax({
-                type: "POST",
-                url: "../server/siramatik.php",
-                data: { "FunctionName": "GetList", "Parameters": [doctor, DateFormatYYYYMMDD(selectedDate)] },
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    console.log(obj.Data);
-                    $('#TodayPatient').DataTable({
+        var hastatc = location.href.split("hastatc=")[1];
+        $.ajax({
+            type: "POST",
+            url: "../server/patient.php",
+            data: { "FunctionName": "GetPatientHistoryList", "Parameters": [hastatc] },
+            success: function (response) {
+                console.log(response);
+                var obj = JSON.parse(response);
+                if (obj.Status == true) {
+                    $('#patientHistory').DataTable({
                         data: obj.Data,
                         select: 'single',
                         "bDestroy": true,
                         "order": [[1, "asc"]],
                         "paging": false,
+                        colReorder: {
+                            order: [0, 1, 2, 3, 4, 5,6]
+                        },
                         "createdRow": function (row, data, index) {
                             if (data.Status == 0) {
-                                $('td', row).eq(4).addClass('status-false');
-                                $('td', row).eq(4).text("İşlem Tamamlanmamış")
+                                $('td', row).eq(6).addClass('status-false');
+                                $('td', row).eq(6).text("İşlem Tamamlanmamış")
                             }
                             else {
-                                $('td', row).eq(4).addClass('status-true');
-                                $('td', row).eq(4).text("İşlem Bitmiş")
+                                $('td', row).eq(6).addClass('status-true');
+                                $('td', row).eq(6).text("İşlem Bitmiş")
                             }
                         },
                         "language": {
@@ -177,47 +163,19 @@
 
                         },
                         columns: [
-                            { data: "Hasta" },
+
+                            { data: "Tarih" },
                             { data: "Saat" },
                             { data: "NameSurname" },
-                            { data: "Yas" },
+                            { data: "Doctor" },
+                            { data: "Islem" },
+                            { data: "Detail" },
                             { data: "Status" },]
                     });
-                },
-                error: function (response) {
-
                 }
-            });
-        }
-        function GoProccess() {
-            var mainPatientTable = $('#TodayPatient').DataTable();
-            console.log(mainPatientTable.rows('.selected').data()[0].Yas);
-            if (mainPatientTable.rows('.selected').count() > 0) {
-                var hastatc = mainPatientTable.rows('.selected').data()[0].Hasta;
-                $.notify("İşlem Sayfasına Yönlendiriliyorsunuz.", "success");
-                setTimeout(() => {
 
-                    window.location.href = "proccess.html?hastatc=" + hastatc;
-
-                }, 2000);
             }
-            else {
-                $.notify("Listeden Hasta Seçmediniz", "error");
-            }
-        }
-        function GoHistory() {
-            var mainPatientTable = $('#TodayPatient').DataTable();
-
-            if (mainPatientTable.rows('.selected').count() > 0) {
-                var hastatc = mainPatientTable.rows('.selected').data()[0].Hasta;
-                $.notify("Geçmiş Sayfasına Yönlendiriliyorsunuz.", "success");
-                setTimeout(() => {
-
-                    window.location.href = "patientHistory.html?hastatc=" + hastatc;
-
-                }, 2000);
-            }
-        }
+        });
     </script>
 </body>
 

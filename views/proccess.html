@@ -186,14 +186,12 @@
                     console.log(response);
                     var obj = JSON.parse(response);
                     if (obj.Status == true) {
-                        $.notify(obj.Message, "success");
-
                         $.ajax({
                             type: "POST",
                             url: "../server/siramatik.php",
                             data: { "FunctionName": "Update", "Parameters": [hastatc, DateFormatYYYYMMDD(new Date())] },
                             success: function (response2) {
-                               console.log(response2);  
+                                $.notify(obj.Message, "success");
                             }
                         });
                         setTimeout(() => {

@@ -7,7 +7,7 @@ function deleteCookies() {
 function readSession(page)
 {
     var patientPages = ["patient.html"];
-    var staffPages = ["personel.html","proccess.html"];
+    var staffPages = ["personel.html","proccess.html","patientHistory.html"];
     var generalPages=["index.html"]
     //AHSUserType 0 ise Personel
     //AHSUserType 1 ise Hasta
